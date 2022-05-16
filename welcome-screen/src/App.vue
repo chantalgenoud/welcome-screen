@@ -1,9 +1,11 @@
 
 
 <template>
-
     <div id="app">
-    <h1>Welcome to Opportunity</h1>
+    
+    <div="body">
+      
+      <h1>Welcome to Opportunity</h1>
     <!--<span> </span> -->
 
     <div class="blauesRechteck">
@@ -16,32 +18,38 @@
       </ul>
         </div>
 
-          <ul>
+    <div class="blauesRechteck"> 
+      <ul>
         <li>
           <span> <!-- daytime --> </span>
-          <h3><!-- title --></h3>
+          <h3>LOREM IPSUM DOLOR></h3>
           <span> <!-- description --> </span>
         </li>
       </ul>
+    </div>
 
+         
+    <div class="blauesRechteck"> 
           <ul>
         <li>
           <span> <!-- daytime --> </span>
-          <h3><!-- title --></h3>
+          <h3>LOREM IPSUM DOLOR</h3>
           <span> <!-- description --> </span>
         </li>
       </ul>
+    </div>
 
 
-    <footer>
-      <div> <!--not sure style: width="1080p" height="130px" -->
-        <img src="./assets/STZH_SEB_Logo.png" width="230px" height="44px">
-        <img src="./assets/Opportunity.png" width="296px" height="55px">
-        <img src="./assets/SAG_Logo_De.png" width="273px" height="52px">
-       </div> 
+
+
+    <footer id="logos">
+          <img src="./assets/STZH_SEB_Logo.png" width="230px" height="44px">
+          <img src="./assets/Opportunity.png" width="296px" height="55px">
+          <img src="./assets/SAG_Logo_De.png" width="273px" height="52px">
+  
     </footer>
 
-  </div>
+</div>
 
 </template>
 
@@ -62,14 +70,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
-body {
+
+ {
   background-color: #E5E5E5;
   text-align: left;
 }
-
 
 
 h1 {
@@ -82,9 +89,15 @@ h1 {
 .blauesRechteck {
   width: 960px;
   height: 182px;
-  position: absolute;
-  padding-right: -4.46%;
   background: #0f05a0;
-
 }
+
+
+footer {
+  position: flex;
+  text-align: center;
+  background-color: yellow;
+  justify-self: unset;
+}
+
 </style>
