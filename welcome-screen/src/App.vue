@@ -3,6 +3,16 @@
 <template>
     <div id="app">
     
+    <p>{{ getData() }}</p>
+    <h1 class="site-title"> {{ title }} </h1>
+    <span class="site-description">Heute ist der {{ currentDate }} </span>
+        <span class="site-description">Heute ist der {{ Description }} </span>
+
+<p> {{ entries.data.valueRanges[0].values }} </p>
+   
+
+    <!-- entry list -->
+    <ul class="entry-list"> </ul>
 
       
       <h1>Welcome to Opportunity</h1>
@@ -54,27 +64,58 @@
 </template>
 
 <script>
-export default {
-  name: "App",
-};
-</script>
-
-<!--
 import axios from "axios";
 
-DATA =
-sheet_id: "",
-api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU", 
-
-
-COMPUTED =
-function ()  {
-  return () {
-    return ´https://sheets.googleapis.com/v4/spreadsheets/${**sheet id**}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${**token**}`;
-
+export default {
+  name: "App",
+  data() {
+    return {
+      title: "Welcome to Opportunity",
+      sheet_id: "1a81aI0Y8ViZO0tI92h2YSMqVQJ8hmNNMyMylXgvwiU4",
+      api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU",
+      entries: [],
+      currentDate: "",
+    };
   },
+
+  
+  computed: {
+    gsheet_url() {
+      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+    },
+  },
+
+  methods: {
+    getData() {
+      axios.get(this.gsheet_url).then((response) => {
+        this.entries = response.data.valueRanges[0].values;
+      });
+    },
+
+  updateCurrentDate() {
+  },
+
+  refreshData() {
+  },
+
+  mounted() {
+//da kommt was
+  },
+},
 }
--->
+</script>
+
+
+//erstes element rausschneiden.
+
+
+ 
+
+
+
+
+
+
 <style>
 
 
@@ -89,8 +130,11 @@ function ()  {
 }
 
 
-
-
+/** {
+  background-color: #E5E5E5;
+  text-align: left;
+}
+*/
 
 h1 {
   text-align: left;
@@ -110,7 +154,6 @@ h1 {
   position: fixed;
   text-align: center;
   width: 100%;
-
 }
 
 </style>
