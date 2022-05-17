@@ -3,7 +3,7 @@
 <template>
     <div id="app">
     
-    <div="body">
+
       
       <h1>Welcome to Opportunity</h1>
     <!--<span> </span> -->
@@ -59,6 +59,22 @@ export default {
 };
 </script>
 
+<!--
+import axios from "axios";
+
+DATA =
+sheet_id: "",
+api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU", 
+
+
+COMPUTED =
+function ()  {
+  return () {
+    return ´https://sheets.googleapis.com/v4/spreadsheets/${**sheet id**}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${**token**}`;
+
+  },
+}
+-->
 <style>
 
 
@@ -73,10 +89,7 @@ export default {
 }
 
 
- {
-  background-color: #E5E5E5;
-  text-align: left;
-}
+
 
 
 h1 {
@@ -93,11 +106,11 @@ h1 {
 }
 
 
-footer {
-  position: flex;
+.logos {
+  position: fixed;
   text-align: center;
-  background-color: yellow;
-  justify-self: unset;
+  width: 100%;
+
 }
 
 </style>
