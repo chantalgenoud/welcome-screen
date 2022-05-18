@@ -1,70 +1,134 @@
 
 
 <template>
-    <div id="app">
-    
-    <p>{{ getData() }}</p>
-    <h1 class="site-title"> {{ title }} </h1>
-    <span class="site-description">Heute ist der {{ currentDate }} </span>
-        <span class="site-description">Heute ist der {{ Description }} </span>
 
-<p> {{ entries.data.valueRanges[0].values }} </p>
-   
+<div id="app">
 
-    <!-- entry list -->
-    <ul class="entry-list"> </ul>
+ <!-- <p>{{ getData() }}</p> -->
+  <h1 class="site-title"> {{ title }} </h1>
+  <span class="site-description">Heute ist der {{ currentDate }} </span>
+  <p id="noEntries" v-if="!value">Keine Termine geplant!</p> <!--falls nichts in der db ist, kommt dieser Text -->
+  <p> {{  title  }} </p>
+  <p> {{  description  }} </p>
+  <p> {{  event }}
 
-      
-      <h1>Welcome to Opportunity</h1>
-    <!--<span> </span> -->
 
-    <div class="blauesRechteck">
-      <ul>
+
+ <!-- kein v-else yet--> 
+
+  <!--
+    <p> {{ entries.data.valueRanges[0].values }} </p>
+  -->
+
+
+ 
+  <div>   
+
+   <!-- Dieser Code ist von Tugce -->  
+  <!-- entry list -->
+
+  <ul>
+
+      <li v-for="event in entries" :key="event.id">
+        <span> {{ event [8]}} </span>
+      </li>
+  </ul>
+        <li
+          v-for="entry in entries"
+          :key="entry.id"
+        >
+
+          <span class="entry-daytime">{{  entry[1].replaceAll("/", ".")  }}</span>>br />
+          <h3> class="entry-title">Ich bin ein Titel</h3>
+          <span class="entry-description">Ich bin eine Beschreibung</span><br />
+        </li>
+
+
+  </div>
+
+  <!--
+          <span>{{entry}}</span><br />
+          <h3>ich bin ein titel</h3>
+          <span>ich bin eine beschreibung</span><br />
+        </li>
+      </ul>
+  </div>  
+
+  -->
+
+
+      <ul class="entry-list"> </ul>
+
+        
+        <h1>Welcome to Opportunity</h1>
+
+
+      <div class="blauesRechteck">
+        <ul>
+            <li>
+            <span style=color:#EB5E00> 14.00 Uhr </span>
+            <h3>Basisbeschäftigung Besuch</h3>
+            <span>Interessierte für den zweiten Kurs werden uns besuchen</span>
+          </li>
+        </ul>
+          </div>
+[Vue warn]: Property or method "value" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property. See: https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.
+
+found in
+
+---> <App> at src/App.vue
+       <Root> vue.runtime.esm.js:619
+[Vue warn]: Property or method "description" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property. See: https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.
+
+found in
+
+---> <App> at src/App.vue
+       <Root> vue.runtime.esm.js:619
+[Vue warn]: Property or method "event" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property. See: https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.
+
+found in
+
+---> <App> at src/App.vue
+       <Root>
+      <div class="blauesRechteck"> 
+        <ul>
           <li>
-          <span style=color:#EB5E00> 14.00 Uhr </span>
-          <h3>Basisbeschäftigung Besuch</h3>
-          <span>Interessierte für den zweiten Kurs werden uns besuchen</span>
-        </li>
-      </ul>
-        </div>
+            <span> <!-- daytime --> </span>
+            <h3>LOREM IPSUM DOLOR></h3>
+            <span> <!-- description --> </span>
+          </li>
+        </ul>
+      </div>
 
-    <div class="blauesRechteck"> 
-      <ul>
-        <li>
-          <span> <!-- daytime --> </span>
-          <h3>LOREM IPSUM DOLOR></h3>
-          <span> <!-- description --> </span>
-        </li>
-      </ul>
-    </div>
+          
+      <div class="blauesRechteck"> 
+            <ul>
+          <li>
+            <span> <!-- daytime --> </span>
+            <h3>LOREM IPSUM DOLOR</h3>
+            <span> <!-- description --> </span>
+          </li>
+        </ul>
+      </div>
 
-         
-    <div class="blauesRechteck"> 
-          <ul>
-        <li>
-          <span> <!-- daytime --> </span>
-          <h3>LOREM IPSUM DOLOR</h3>
-          <span> <!-- description --> </span>
-        </li>
-      </ul>
-    </div>
+-->
 
-
-
-
-    <footer id="logos">
-          <img src="./assets/STZH_SEB_Logo.png" width="230px" height="44px">
-          <img src="./assets/Opportunity.png" width="296px" height="55px">
-          <img src="./assets/SAG_Logo_De.png" width="273px" height="52px">
-  
-    </footer>
+ <!--footer-->
+ 
+ <!--    <footer id="logos"> -->
+   <footer class="footer">
+            <img src="./assets/STZH_SEB_Logo.png" width="230px" height="44px">
+            <img src="./assets/Opportunity.png" width="296px" height="55px">
+            <img src="./assets/SAG_Logo_De.png" width="273px" height="52px">
+    
+      </footer>
 
 </div>
 
-</template>
+
 
 <script>
-import axios from "axios";
+import axios from "axios"; // axios ist einen db für http anfragen im backend
 
 export default {
   name: "App",
@@ -91,22 +155,18 @@ export default {
         this.entries = response.data.valueRanges[0].values;
       });
     },
+},
 
-  updateCurrentDate() {
-  },
-
-  refreshData() {
-  },
 
   mounted() {
-//da kommt was
+    this.getData();
   },
-},
-}
+
+};
+
 </script>
 
 
-//erstes element rausschneiden.
 
 
  
@@ -126,7 +186,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
-  color: #2c3e50;
+  background-color: #E8EFF4;
+;
 }
 
 
@@ -145,8 +206,10 @@ h1 {
 
 .blauesRechteck {
   width: 960px;
-  height: 182px;
+  he</template>ight: 182px;
   background: #0f05a0;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 
@@ -154,6 +217,23 @@ h1 {
   position: fixed;
   text-align: center;
   width: 100%;
+}
+
+/* Dieser Code ist von Tugce */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px;
+  background: #fff;
+}
+
+.footer img {
+  height: 50px;
 }
 
 </style>
