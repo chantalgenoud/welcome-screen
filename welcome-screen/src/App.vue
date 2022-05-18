@@ -14,9 +14,9 @@
             <div v-if="entries">
               <li v-for="event in entries" :key="event.id" class="unlist blauesRechteck">
                    <!-- hier sollte ein Loop kommen, was ich aber verpasst habe und event oder entry? ist mir nicht ganz klar -->
-              <span style=color:#EB5E00> {{  event[0]  }}  Uhr  {{  event[1].replaceAll("/", ".")  }} </span>
-              <h3 style=color:white> {{  event[2]  }}</h3>
-              <span style=color:white> {{ event [3]  }}  </span>
+              <span class=uhrzeit style=color:#EB5E00> {{  event[0]  }}  Uhr  {{  event[1].replaceAll("/", ".")  }} </span>
+              <h3 class=beschreibung style=color:#ffc21a> {{  event[2]  }}</h3>
+              <span style=color:#ffc21a> {{ event [3]  }}  </span>
               </li>
             </div>
             <h3 v-else>Keine Termine geplant!</h3>
@@ -32,7 +32,6 @@
 </footer>
 
 </div>
-
 
 </template>
 
@@ -86,7 +85,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 #app {
-  font-family: 'Inter, sans-serif';
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
@@ -137,5 +136,21 @@ h1 {
 .padding {
   padding: 30px;
 }
+
+.uhrzeit {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  color: #EB5E00;
+}
+
+.beschreibung {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  color: #e2bb3b;
+}
+
+
 
 </style>
