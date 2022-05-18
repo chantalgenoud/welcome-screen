@@ -148,7 +148,7 @@ h1 {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 28px;
-  color: #e2bb3b;
+  color: #d1ab87;
 }
 
 
