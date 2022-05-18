@@ -7,125 +7,34 @@
  <!-- <p>{{ getData() }}</p> -->
   <h1 class="site-title"> {{ title }} </h1>
   <span class="site-description">Heute ist der {{ currentDate }} </span>
-  <p id="noEntries" v-if="!value">Keine Termine geplant!</p> <!--falls nichts in der db ist, kommt dieser Text -->
-  <p> {{  title  }} </p>
-  <p> {{  description  }} </p>
-  <p> {{  event }}
 
 
 
- <!-- kein v-else yet--> 
+        <ul class=padding>
+            <div v-if="entries">
+              <li v-for="event in entries" :key="event.id" class="unlist blauesRechteck">
+                   <!-- hier sollte ein Loop kommen, was ich aber verpasst habe und event oder entry? ist mir nicht ganz klar -->
+              <span style=color:#EB5E00> {{  event[0]  }}  Uhr  {{  event[1].replaceAll("/", ".")  }} </span>
+              <h3 style=color:white> {{  event[2]  }}</h3>
+              <span style=color:white> {{ event [3]  }}  </span>
+              </li>
+            </div>
+            <h3 v-else>Keine Termine geplant!</h3>
+        </ul>
+  
 
-  <!--
-    <p> {{ entries.data.valueRanges[0].values }} </p>
-  -->
-
-
- 
-  <div>   
-
-   <!-- Dieser Code ist von Tugce -->  
-  <!-- entry list -->
-
-  <ul>
-
-      <li v-for="event in entries" :key="event.id">
-        <span> {{ event [8]}} </span>
-      </li>
-  </ul>
-        <li
-          v-for="entry in entries"
-          :key="entry.id"
-        >
-
-          <span class="entry-daytime">{{  entry[1].replaceAll("/", ".")  }}</span>>br />
-          <h3> class="entry-title">Ich bin ein Titel</h3>
-          <span class="entry-description">Ich bin eine Beschreibung</span><br />
-        </li>
-
-
+<footer>
+  <div class="footer">
+          <img src="./assets/STZH_SEB_Logo.png" width="230px" height="44px">
+          <img src="./assets/Opportunity.png" width="296px" height="55px">
+          <img src="./assets/SAG_Logo_De.png" width="273px" height="52px">
   </div>
-
-  <!--
-          <span>{{entry}}</span><br />
-          <h3>ich bin ein titel</h3>
-          <span>ich bin eine beschreibung</span><br />
-        </li>
-      </ul>
-  </div>  
-
-  -->
-
-
-      <ul class="entry-list"> </ul>
-
-        
-        <h1>Welcome to Opportunity</h1>
-
-
-      <div class="blauesRechteck">
-        <ul>
-            <li>
-            <span style=color:#EB5E00> 14.00 Uhr </span>
-            <h3>Basisbeschäftigung Besuch</h3>
-            <span>Interessierte für den zweiten Kurs werden uns besuchen</span>
-          </li>
-        </ul>
-          </div>
-[Vue warn]: Property or method "value" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property. See: https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.
-
-found in
-
----> <App> at src/App.vue
-       <Root> vue.runtime.esm.js:619
-[Vue warn]: Property or method "description" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property. See: https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.
-
-found in
-
----> <App> at src/App.vue
-       <Root> vue.runtime.esm.js:619
-[Vue warn]: Property or method "event" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property. See: https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.
-
-found in
-
----> <App> at src/App.vue
-       <Root>
-      <div class="blauesRechteck"> 
-        <ul>
-          <li>
-            <span> <!-- daytime --> </span>
-            <h3>LOREM IPSUM DOLOR></h3>
-            <span> <!-- description --> </span>
-          </li>
-        </ul>
-      </div>
-
-          
-      <div class="blauesRechteck"> 
-            <ul>
-          <li>
-            <span> <!-- daytime --> </span>
-            <h3>LOREM IPSUM DOLOR</h3>
-            <span> <!-- description --> </span>
-          </li>
-        </ul>
-      </div>
-
--->
-
- <!--footer-->
- 
- <!--    <footer id="logos"> -->
-   <footer class="footer">
-            <img src="./assets/STZH_SEB_Logo.png" width="230px" height="44px">
-            <img src="./assets/Opportunity.png" width="296px" height="55px">
-            <img src="./assets/SAG_Logo_De.png" width="273px" height="52px">
-    
-      </footer>
+</footer>
 
 </div>
 
 
+</template>
 
 <script>
 import axios from "axios"; // axios ist einen db für http anfragen im backend
@@ -138,14 +47,14 @@ export default {
       sheet_id: "1a81aI0Y8ViZO0tI92h2YSMqVQJ8hmNNMyMylXgvwiU4",
       api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU",
       entries: [],
-      currentDate: "",
+      currentDate: "18.06.2022",
     };
   },
 
   
   computed: {
     gsheet_url() {
-      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A2%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
     },
   },
 
@@ -161,6 +70,7 @@ export default {
   mounted() {
     this.getData();
   },
+/* Hier kommt das mit dem Intervall */
 
 };
 
@@ -168,21 +78,15 @@ export default {
 
 
 
-
- 
-
-
-
-
-
-
 <style>
 
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;900&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 #app {
-  font-family: 'Roboto, sans-serif';
+  font-family: 'Inter, sans-serif';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
@@ -191,33 +95,23 @@ export default {
 }
 
 
-/** {
-  background-color: #E5E5E5;
-  text-align: left;
-}
-*/
-
 h1 {
   text-align: left;
-  font-family: 'Roboto', sans-serif;
+  font-family: '', sans-serif;
   font-size: 62px;
   font-weight: 90;
 }
 
 .blauesRechteck {
-  width: 960px;
-  he</template>ight: 182px;
+  padding: 40px;
+  width: 840px;
+  height: 102px;
   background: #0f05a0;
-  padding-left: 60px;
-  padding-right: 60px;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-bottom: 40px;
 }
 
-
-.logos {
-  position: fixed;
-  text-align: center;
-  width: 100%;
-}
 
 /* Dieser Code ist von Tugce */
 .footer {
@@ -234,6 +128,14 @@ h1 {
 
 .footer img {
   height: 50px;
+}
+
+.unlist {
+  list-style-type: none;
+}
+
+.padding {
+  padding: 30px;
 }
 
 </style>
