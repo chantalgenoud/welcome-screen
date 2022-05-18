@@ -16,7 +16,7 @@
                    <!-- hier sollte ein Loop kommen, was ich aber verpasst habe und event oder entry? ist mir nicht ganz klar -->
               <span class=uhrzeit style=color:#EB5E00> {{  event[0]  }}  Uhr  {{  event[1].replaceAll("/", ".")  }} </span>
               <h3 class=beschreibung style=color:#ffc21a> {{  event[2]  }}</h3>
-              <span style=color:#ffc21a> {{ event [3]  }}  </span>
+              <span style=color:#ffc21a > {{ event [3]  }}  </span>
               </li>
             </div>
             <h3 v-else>Keine Termine geplant!</h3>
@@ -65,13 +65,25 @@ export default {
     },
 },
 
+  /* das mit dem Datum habe ich verpasst, leider 
+  refreshData() {
+
+  }
+  */
+
+
 
   mounted() {
     this.getData();
-  },
-/* Hier kommt das mit dem Intervall */
+    
+    /*refreshData();
+    //this.refreshData();
+    /* Hier kommt das mit dem Interval geht noch nicht*/
+    setInterval(
+      this.getData, 1800000); //wait 30min for next update (30min * 60sek * 1000)
+},
+}
 
-};
 
 </script>
 
@@ -81,8 +93,6 @@ export default {
 
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 #app {
   font-family: 'Inter', sans-serif;
@@ -116,7 +126,7 @@ h1 {
 .footer {
   display: flex;
   justify-content: space-between;
-  box-sizing: border-box;
+  box-sizing: border1092-box;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -148,7 +158,7 @@ h1 {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 28px;
-  color: #d1ab87;
+  color: #FFBFAB;
 }
 
 
