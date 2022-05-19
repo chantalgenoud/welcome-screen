@@ -2,7 +2,7 @@ Grundsätzlich funktioniert es, es hat ein paar Einbussen:
 
 Design nicht 1:1 umgesetzt. Das mit Nelify hat bei mir nicht funktioniert. Anbei der GitHub Link. 
 
-Not done (details)
+Not done (details):
 Code the Design according to Figma (nur zufriedenstellend umgesetzt) 
 add function to refresh data
 add refreshData function to mounted()
