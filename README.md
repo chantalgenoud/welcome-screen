@@ -10,6 +10,10 @@ https://app.netlify.com/start
 https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/
 add preview link of your netlify to your github repository
 
+Update:
+
+Ok, dank deiner Hilfe hat das mit dem Netlifiy geklapp. Hier der Link:
+https://main--tranquil-youtiao-163b95.netlify.app/
 
 # welcome-screen
 
